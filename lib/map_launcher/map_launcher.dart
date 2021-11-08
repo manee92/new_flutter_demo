@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(MapLauncherApp());
+  runApp(const MapLauncherApp());
 }
 
 class MapLauncherApp extends StatelessWidget {
+  const MapLauncherApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,6 +23,8 @@ class MyMapLauncher extends StatelessWidget {
   final coordinates = Coords(7.296389, 80.635);
   final title = "Kandy";
   final description = "Kandy, Sri Lanka";
+
+   MyMapLauncher({Key? key}) : super(key: key);
 
   showMarkerWithFirstMap() async {
     final List<AvailableMap> availableMaps = await MapLauncher.installedMaps;
@@ -98,7 +102,7 @@ class MyMapLauncher extends StatelessWidget {
                 'Kandy - Coordinates',
                 style: Theme.of(context).textTheme.headline5,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -109,28 +113,28 @@ class MyMapLauncher extends StatelessWidget {
                 coordinates.longitude.toString(),
                 style: Theme.of(context).textTheme.headline5,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.red)),
                   onPressed: () => showMarkerWithFirstMap(),
-                  child: Text('Show Marker With First Map')),
+                  child: const Text('Show Marker With First Map')),
               ElevatedButton(
                   onPressed: () => showDirectionWithFirstMap(),
-                  child: Text('Show Direction With First Map')),
+                  child: const Text('Show Direction With First Map')),
               ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Colors.orange)),
                   onPressed: () => checkAvailableAndShow(),
-                  child: Text('Check Availability And Show Marker')),
+                  child: const Text('Check Availability And Show Marker')),
               ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.green)),
                   onPressed: () => openMapsSheet(context),
-                  child: Text('Show Available Maps')),
+                  child: const Text('Show Available Maps')),
             ],
           ),
         ));

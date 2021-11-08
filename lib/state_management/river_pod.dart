@@ -1,82 +1,39 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+
 void main() {
   runApp(
-    ProviderScope(
-        child: MyApp()
-    )
+    const ProviderScope(child: MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyCounter(),
-    );
+    return MaterialApp(home: Home());
   }
 }
 
+final counterProvider = StateProvider((ref) => 0);
 
-
-class MyCounter extends ConsumerWidget {
-  final counterStateProvider = StateProvider<int>((ref){
-    return 0;
-  });
-
+class Home extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    print("build");
-    final counter = watch(counterStateProvider);
-
-    return ProviderListener<StateController<int>>(
-        onChange: (context, counterState){
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Value${counterState.state}'))
-          );
-        },
-        provider: counterStateProvider,
-        child: Scaffold(
-          body: Center(
-            child: Text('Value: ${counter.state}'),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: ()=> context.read(counterStateProvider).state++,
-            child: Icon(Icons.add),
-          ),
-        )
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Counter example')),
+      body: Center(
+        child: Consumer(builder: (context, ref, _) {
+          final count = ref.watch(counterProvider.state).state;
+          return Text('$count');
+        }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => ref.read(counterProvider.state).state++,
+        child: const Icon(Icons.add),
+      ),
     );
-    // return MaterialApp(
-    //   home: Scaffold(
-    //     body: Center(
-    //       child: Text('Value: ${counter.state}'),
-    //     ),
-    //     floatingActionButton: FloatingActionButton(
-    //       onPressed: ()=> context.read(counterStateProvider).state++,
-    //       child: Icon(Icons.add),
-    //     ),
-    //   ),
-    // );
-  }
-}
-
-
-class Clock extends StateNotifier<DateTime> {
-
-  Clock():super (DateTime.now()){
-    _timer = Timer.periodic(Duration(seconds: 1), (_) {
-      state =DateTime.now();
-    });
-  }
-
-  late final Timer _timer;
-
-  @override
-  void dispose() {
-    super.dispose();
-    _timer.cancel();
   }
 }
