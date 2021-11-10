@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Home());
+    return const MaterialApp(debugShowCheckedModeBanner: false, home: Home());
   }
 }
 
@@ -25,43 +25,41 @@ class BulbState extends ChangeNotifier {
   }
 }
 
-final bulbStateNotifier = ChangeNotifierProvider<BulbState>((ref) => BulbState());
-
+final bulbStateNotifier =
+    ChangeNotifierProvider<BulbState>((ref) => BulbState());
 
 class Home extends ConsumerWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final bulbState = ref.watch(bulbStateNotifier);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Riverpod example')),
-      body: Consumer(builder: (context, ref, _) {
-          final bulbState = ref.watch(bulbStateNotifier);
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                bulbState.isOn ?
-                const Icon(
-                  Icons.lightbulb,
-                  size: 150,
-                  color: Colors.amberAccent,
-                ) : const Icon(
-                  Icons.lightbulb_outline,
-                  size: 150,
-                  color: Colors.amberAccent,
-                ),
-                Switch(
-                  value: bulbState.isOn,
-                  onChanged: (enabled){
-                    bulbState.changeBulb();
-                  },
-                )
-              ],
-            ),
-          );
-        }
-      ),
-    );
+        appBar: AppBar(title: const Text('Riverpod example')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              bulbState.isOn
+                  ? const Icon(
+                      Icons.lightbulb,
+                      size: 150,
+                      color: Colors.amberAccent,
+                    )
+                  : const Icon(
+                      Icons.lightbulb_outline,
+                      size: 150,
+                      color: Colors.amberAccent,
+                    ),
+              Switch(
+                value: bulbState.isOn,
+                onChanged: (enabled) {
+                  ref.read(bulbStateNotifier).changeBulb();
+                },
+              )
+            ],
+          ),
+        ));
   }
 }
