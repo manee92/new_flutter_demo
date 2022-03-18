@@ -39,6 +39,11 @@ dependencies:
   http: ^0.13.3
   map_launcher: ^2.1.1
   flutter_svg: ^0.22.0
+  timezone: ^0.8.0
+
+  flutter_local_notifications: ^9.4.0
+  datetime_picker_formfield: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:
