@@ -140,6 +140,9 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
             height: 80,
           ),
           Text(fullDate.toString()),
+          const SizedBox(
+            height: 15,
+          ),
           ElevatedButton(
               onPressed: () => _selectDate(context),
               child: const Text("Add reminder"))

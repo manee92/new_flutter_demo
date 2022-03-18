@@ -3,13 +3,6 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
-  //Singleton pattern
-  static final NotificationService _notificationService =
-  NotificationService._internal();
-  factory NotificationService() {
-    return _notificationService;
-  }
-  NotificationService._internal();
 
   //instance of FlutterLocalNotificationsPlugin
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -77,17 +70,22 @@ class NotificationService {
 
 
   Future<void> scheduleNotifications({id, title, body, time}) async {
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-        id,
-        title,
-        body,
-        tz.TZDateTime.from(time, tz.local),
-        const NotificationDetails(
-            android: AndroidNotificationDetails(
-                'your channel id', 'your channel name',
-                channelDescription: 'your channel description')),
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-        UILocalNotificationDateInterpretation.absoluteTime);
+    try{
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+          id,
+          title,
+          body,
+          tz.TZDateTime.from(time, tz.local),
+          const NotificationDetails(
+              android: AndroidNotificationDetails(
+                  'your channel id', 'your channel name',
+                  channelDescription: 'your channel description')),
+          androidAllowWhileIdle: true,
+          uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime);
+    }catch(e){
+      print(e);
+    }
+
   }
 }
