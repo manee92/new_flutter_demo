@@ -32,11 +32,11 @@ class NotificationService {
 
     await flutterLocalNotificationsPlugin.initialize(
         initializationSettings,
-        onSelectNotification: selectNotification
+        onSelectNotification: onSelectNotification
     );
   }
 
-   selectNotification(String? payload) async {
+   onSelectNotification(String? payload) async {
     //Navigate to wherever you want
   }
 
@@ -68,7 +68,6 @@ class NotificationService {
   }
 
 
-
   Future<void> scheduleNotifications({id, title, body, time}) async {
     try{
       await flutterLocalNotificationsPlugin.zonedSchedule(
@@ -86,6 +85,5 @@ class NotificationService {
     }catch(e){
       print(e);
     }
-
   }
 }

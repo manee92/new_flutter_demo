@@ -43,11 +43,10 @@ class _MyNoteScreenState extends State<MyNoteScreen> {
               children: const [
                 Expanded(
                     child: NoteThumbnail(
-                  color: Color(0xFFFF9C99),
-                  title: "Note one",
-                  content: "Lorem ipsum",
-                  id: 1,
-                )),
+                        id: 1,
+                        color: Color(0xFFFF9C99),
+                        title: "Note one",
+                        content: "Lorem ipsum")),
                 SizedBox(
                   width: 15,
                 ),
