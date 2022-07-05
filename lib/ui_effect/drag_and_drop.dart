@@ -176,10 +176,10 @@ class FruitImagesView extends StatelessWidget {
 
 const List<FruitItem> fruitNameList = [
   FruitItem(name: 'Grapes', id: 1, color: Color(0xFFcf8c82)),
-  FruitItem(name: 'Apple', id: 1, color: Color(0xFFFF9C99)),
-  FruitItem(name: 'Mango', id: 1, color: Color(0xFFdcccff)),
-  FruitItem(name: 'Strawberry', id: 1, color: Color(0xFF8ac2ed)),
-  FruitItem(name: 'Banana', id: 1, color: Color(0xFFfcf000)),
+  FruitItem(name: 'Apple', id: 2, color: Color(0xFFFF9C99)),
+  FruitItem(name: 'Mango', id: 3, color: Color(0xFFdcccff)),
+  FruitItem(name: 'Strawberry', id: 4, color: Color(0xFF8ac2ed)),
+  FruitItem(name: 'Banana', id: 5, color: Color(0xFFfcf000)),
 ];
 
 List<FruitImage> fruitImages = [
