@@ -48,7 +48,6 @@ class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 0,
         items: const <Widget>[
           Icon(CupertinoIcons.heart_fill, size: 30, color: Colors.white),
           Icon(CupertinoIcons.add, size: 30, color: Colors.white),
