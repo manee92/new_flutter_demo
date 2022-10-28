@@ -40,12 +40,15 @@ dependencies:
   map_launcher: ^2.1.1
   flutter_svg: ^1.1.1+1
 
-
   flutter_local_notifications: ^9.4.0
   datetime_picker_formfield: ^2.0.0
 
   curved_navigation_bar: ^1.0.3
 
+#  path_provider: ^2.0.11
+#  flutter_sound: ^9.2.13
+#  permission_handler: ^9.2.0
+#  audio_session: ^0.1.10
 
 
 
