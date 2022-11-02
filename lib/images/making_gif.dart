@@ -24,18 +24,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  late FlutterGifController controller1;
+  late FlutterGifController controller;
   bool isSending = true;
 
   @override
   void initState() {
-    controller1 = FlutterGifController(vsync: this);
+    controller = FlutterGifController(vsync: this);
     moveFiles();
     super.initState();
   }
 
   moveFiles() {
-    controller1.repeat(
+    controller.repeat(
       min: 0,
       max: 18,
       period: const Duration(milliseconds: 2000),
@@ -62,7 +62,7 @@ class MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GifImage(
-                    controller: controller1,
+                    controller: controller,
                     width: 200,
                     height: 400,
                     image: const AssetImage("assets/moving-files.gif"),
